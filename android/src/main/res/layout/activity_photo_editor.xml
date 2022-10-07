@@ -1,4 +1,5 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parent"
@@ -41,8 +42,8 @@
                     android:id="@+id/drawing_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/photo_edit_iv"
                     android:layout_alignTop="@+id/photo_edit_iv"
+                    android:layout_alignBottom="@+id/photo_edit_iv"
                     android:layout_centerInParent="true"
                     android:visibility="gone" />
 
@@ -53,9 +54,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="20dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
                 android:padding="10dp"
                 android:shadowColor="#000000"
                 android:shadowDx="1"
@@ -70,9 +71,9 @@
                 android:id="@+id/erase_drawing_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
                 android:layout_toStartOf="@+id/done_drawing_tv"
                 android:padding="10dp"
                 android:shadowColor="#000000"
@@ -101,8 +102,8 @@
                 android:id="@+id/top_parent_rl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/top_shadow"
                 android:layout_alignTop="@+id/top_shadow"
+                android:layout_alignBottom="@+id/top_shadow"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp">
 
@@ -119,8 +120,8 @@
                     android:id="@+id/add_text_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
                     android:padding="15dp"
                     android:text="@string/ic_text"
                     android:textColor="#FFFFFF"
@@ -140,7 +141,7 @@
                     android:id="@+id/add_crop_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toStartOf="@+id/add_pencil_tv"
+                    android:layout_toStartOf="@+id/add_image_emoji_tv"
                     android:padding="15dp"
                     android:text="@string/ic_crop"
                     android:textColor="#FFFFFF"
@@ -150,7 +151,7 @@
                     android:id="@+id/add_image_emoji_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toStartOf="@+id/add_crop_tv"
+                    android:layout_toStartOf="@+id/add_pencil_tv"
                     android:padding="15dp"
                     android:text="@string/ic_images"
                     android:textColor="#FFFFFF"
@@ -159,113 +160,109 @@
 
             </RelativeLayout>
 
-            <View
-                android:id="@+id/bottom_shadow"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_alignParentBottom="true"
-                android:background="@drawable/below_shadow" />
-
-            <RelativeLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/bottom_parent_rl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/bottom_shadow"
-                android:layout_alignTop="@+id/bottom_shadow"
-                android:paddingLeft="26dp"
-                android:paddingRight="26dp">
+                android:padding="10dp"
+                android:background="@drawable/below_shadow"
+                android:layout_marginBottom="20dp"
+                android:layout_alignParentBottom="true">
 
                 <TextView
                     android:id="@+id/save_tv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/save_text_tv"
-                    android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:gravity="center"
                     android:text="@string/ic_save"
                     android:textColor="#FFFFFF"
-                    android:textSize="25sp" />
+                    android:textSize="25sp"
+                    app:layout_constraintEnd_toEndOf="@id/save_text_tv"
+                    app:layout_constraintStart_toStartOf="@id/bottom_parent_rl"
+                    app:layout_constraintTop_toTopOf="@id/bottom_parent_rl" />
 
                 <TextView
                     android:id="@+id/save_text_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
                     android:layout_below="@+id/save_tv"
                     android:layout_centerVertical="true"
                     android:layout_marginTop="4dp"
                     android:text="@string/save"
                     android:textColor="#FFFFFF"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toStartOf="@id/bottom_parent_rl"
+                    app:layout_constraintTop_toBottomOf="@id/save_tv" />
 
                 <TextView
                     android:id="@+id/clear_all_tv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/clear_all_text_tv"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="4dp"
                     android:layout_toEndOf="@+id/save_tv"
                     android:gravity="center"
                     android:text="@string/ic_clear_all"
                     android:textColor="#FFFFFF"
-                    android:textSize="25sp" />
+                    android:textSize="25sp"
+                    app:layout_constraintEnd_toEndOf="@id/clear_all_text_tv"
+                    app:layout_constraintStart_toEndOf="@id/save_tv"
+                    app:layout_constraintTop_toTopOf="@id/bottom_parent_rl" />
 
                 <TextView
                     android:id="@+id/clear_all_text_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/clear_all_tv"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="20dp"
                     android:layout_marginTop="4dp"
-                    android:layout_toEndOf="@+id/save_tv"
                     android:text="@string/clear_all"
                     android:textColor="#FFFFFF"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toStartOf="@id/clear_all_tv"
+                    app:layout_constraintTop_toBottomOf="@id/clear_all_tv" />
 
                 <TextView
                     android:id="@+id/undo_tv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/undo_text_tv"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_toEndOf="@+id/clear_all_tv"
                     android:gravity="center"
                     android:text="@string/ic_clear_all"
                     android:textColor="#FFFFFF"
                     android:textSize="25sp"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@id/undo_text_tv"
+                    app:layout_constraintStart_toEndOf="@id/clear_all_tv"
+                    app:layout_constraintTop_toTopOf="@id/bottom_parent_rl" />
 
                 <TextView
                     android:id="@+id/undo_text_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/clear_all_tv"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="20dp"
                     android:layout_marginTop="4dp"
-                    android:layout_toEndOf="@+id/clear_all_tv"
                     android:text="@string/undo"
                     android:textColor="#FFFFFF"
                     android:textSize="15sp"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="@id/undo_tv"
+                    app:layout_constraintTop_toBottomOf="@id/undo_tv" />
 
                 <TextView
                     android:id="@+id/go_to_next_screen_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:text="@string/ic_continue"
                     android:textColor="#FFFFFF"
-                    android:textSize="40sp" />
+                    android:textSize="40sp"
+                    app:layout_constraintBottom_toBottomOf="@id/bottom_parent_rl"
+                    app:layout_constraintEnd_toEndOf="@id/bottom_parent_rl"
+                    app:layout_constraintTop_toTopOf="@id/bottom_parent_rl" />
 
-            </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <RelativeLayout
                 android:id="@+id/delete_rl"
@@ -321,4 +318,4 @@
 
     </com.ahmedadeltito.photoeditor.widget.SlidingUpPanelLayout>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

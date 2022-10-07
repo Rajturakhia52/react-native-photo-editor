@@ -21,6 +21,7 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.exifinterface.media.ExifInterface;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
@@ -83,8 +84,8 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
     private SlidingUpPanelLayout mLayout;
     private View topShadow;
     private RelativeLayout topShadowRelativeLayout;
-    private View bottomShadow;
-    private RelativeLayout bottomShadowRelativeLayout;
+//    private View bottomShadow;
+    private ConstraintLayout bottomShadowRelativeLayout;
     private ArrayList<Integer> colorPickerColors;
     private int colorCodeTextView = -1;
     private PhotoEditorSDK photoEditorSDK;
@@ -158,8 +159,8 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
         topShadow = findViewById(R.id.top_shadow);
         topShadowRelativeLayout = (RelativeLayout) findViewById(R.id.top_parent_rl);
-        bottomShadow = findViewById(R.id.bottom_shadow);
-        bottomShadowRelativeLayout = (RelativeLayout) findViewById(R.id.bottom_parent_rl);
+//        bottomShadow = findViewById(R.id.bottom_shadow);
+        bottomShadowRelativeLayout = (ConstraintLayout) findViewById(R.id.bottom_parent_rl);
 
         ViewPager pager = (ViewPager) findViewById(R.id.image_emoji_view_pager);
         PageIndicator indicator = (PageIndicator) findViewById(R.id.image_emoji_indicator);
@@ -287,8 +288,8 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
                 addPencil.setVisibility(View.INVISIBLE);
             }
             if (hiddenControls.get(i).toString().equalsIgnoreCase("save")) {
-                saveTextTextView.setVisibility(View.INVISIBLE);
-                saveTextView.setVisibility(View.INVISIBLE);
+                saveTextTextView.setVisibility(View.GONE);
+                saveTextView.setVisibility(View.GONE);
             }
             if (hiddenControls.get(i).toString().equalsIgnoreCase("sticker")) {
                 addImageEmojiTextView.setVisibility(View.INVISIBLE);
@@ -359,6 +360,12 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
             addTextEditText.setText(text);
             addTextEditText.setTextColor(colorCode == -1 ? getResources().getColor(R.color.white) : colorCode);
         }
+        /**
+         * Added code to get focus on edit text
+         */
+        if(addTextEditText.requestFocus()) {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
         final PopupWindow pop = new PopupWindow(PhotoEditorActivity.this);
         pop.setContentView(addTextPopupWindowRootView);
         pop.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
@@ -382,7 +389,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
     private void updateView(int visibility) {
         topShadow.setVisibility(visibility);
         topShadowRelativeLayout.setVisibility(visibility);
-        bottomShadow.setVisibility(visibility);
+//        bottomShadow.setVisibility(visibility);
         bottomShadowRelativeLayout.setVisibility(visibility);
     }
 
@@ -609,8 +616,8 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onAddViewListener(ViewType viewType, int numberOfAddedViews) {
         if (numberOfAddedViews > 0) {
-            undoTextView.setVisibility(View.VISIBLE);
-            undoTextTextView.setVisibility(View.VISIBLE);
+//            undoTextView.setVisibility(View.VISIBLE);
+//            undoTextTextView.setVisibility(View.VISIBLE);
         }
         switch (viewType) {
             case BRUSH_DRAWING:
